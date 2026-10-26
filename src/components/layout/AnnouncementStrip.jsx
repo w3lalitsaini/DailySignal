@@ -13,7 +13,7 @@ export function AnnouncementStrip() {
     <div
       role="region"
       aria-label="Publication Announcement"
-      className="bg-stone-900 text-stone-100 dark:bg-stone-950 dark:text-stone-200 text-xs py-2 px-4 border-b border-stone-800 transition-colors"
+      className="bg-stone-900 text-stone-100 text-xs py-2 px-4 border-b border-stone-800"
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
         <div className="flex-1 flex items-center justify-center gap-2 text-center truncate">

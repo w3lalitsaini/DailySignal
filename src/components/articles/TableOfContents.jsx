@@ -53,13 +53,13 @@ export function TableOfContents({ sections = [] }) {
   return (
     <nav
       aria-label="Table of Contents"
-      className="rounded-xl border border-stone-200 dark:border-stone-800 bg-white/60 dark:bg-stone-900/40 p-4 backdrop-blur-sm"
+      className="rounded-xl border border-stone-200 bg-white/80 p-4 shadow-xs"
     >
       {/* Mobile Toggle */}
       <div className="md:hidden">
         <button
           onClick={() => setIsOpenMobile(!isOpenMobile)}
-          className="w-full flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-stone-700 dark:text-stone-300 py-1"
+          className="w-full flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-stone-700 py-1"
         >
           <span className="flex items-center gap-2">
             <List className="w-4 h-4 text-stone-500" />
@@ -72,17 +72,17 @@ export function TableOfContents({ sections = [] }) {
       </div>
 
       {/* Desktop Header */}
-      <div className="hidden md:flex items-center gap-2 pb-3 mb-3 border-b border-stone-100 dark:border-stone-800/80">
-        <List className="w-4 h-4 text-amber-600 dark:text-amber-500" />
-        <span className="text-xs font-semibold uppercase tracking-wider text-stone-900 dark:text-stone-100 font-sans">
+      <div className="hidden md:flex items-center gap-2 pb-3 mb-3 border-b border-stone-100">
+        <List className="w-4 h-4 text-amber-700" />
+        <span className="text-xs font-semibold uppercase tracking-wider text-stone-900 font-sans">
           In this article
         </span>
       </div>
 
       {/* Links List */}
       <ul
-        className={`space-y-1.5 text-xs text-stone-600 dark:text-stone-400 ${
-          isOpenMobile ? "block mt-3 pt-3 border-t border-stone-100 dark:border-stone-800" : "hidden md:block"
+        className={`space-y-1.5 text-xs text-stone-600 ${
+          isOpenMobile ? "block mt-3 pt-3 border-t border-stone-100" : "hidden md:block"
         }`}
       >
         {sections.map((sec) => {
@@ -94,8 +94,8 @@ export function TableOfContents({ sections = [] }) {
                 onClick={() => scrollToHeading(sec.id)}
                 className={`text-left w-full py-1 px-2 rounded-sm border-l-2 transition-all duration-150 leading-snug ${
                   isActive
-                    ? "border-amber-600 dark:border-amber-500 text-stone-900 dark:text-white font-medium bg-amber-50/50 dark:bg-amber-950/20"
-                    : "border-transparent hover:border-stone-300 dark:hover:border-stone-700 hover:text-stone-900 dark:hover:text-stone-200"
+                    ? "border-amber-700 text-stone-900 font-medium bg-amber-50"
+                    : "border-transparent hover:border-stone-300 hover:text-stone-900"
                 }`}
               >
                 {sec.title}

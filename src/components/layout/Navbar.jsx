@@ -211,7 +211,7 @@ export function Navbar() {
                 autoFocus
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search across all 15 articles..."
+                placeholder="Search across all 25 articles..."
                 className="w-full pl-9 pr-16 py-1.5 text-xs rounded-md border border-stone-200 bg-white text-stone-900 focus:outline-none focus:ring-1 focus:ring-stone-400"
               />
               <button

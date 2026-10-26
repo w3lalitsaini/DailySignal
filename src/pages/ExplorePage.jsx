@@ -35,7 +35,7 @@ export function ExplorePage() {
   useEffect(() => {
     updateSEO({
       title: "All Articles & Dispatches — DailySignal",
-      description: "Browse all 15 in-depth technical investigations, software architecture reviews, and cybersecurity analysis.",
+      description: "Browse all 25 in-depth technical investigations, software architecture reviews, and cybersecurity analysis.",
       ogType: "website"
     });
   }, []);
@@ -137,7 +137,7 @@ export function ExplorePage() {
           Explore All Stories
         </h1>
         <p className="text-sm sm:text-base text-stone-600 leading-relaxed">
-          Search across 15 complete, peer-reviewed engineering dispatches, fraud analyses, and creator economics frameworks.
+          Search across 25 complete, peer-reviewed engineering dispatches, fraud analyses, and creator economics frameworks.
         </p>
       </div>
 
@@ -226,16 +226,16 @@ export function ExplorePage() {
       </div>
 
       {/* Active Count & Filter Indicators */}
-      <div className="flex items-center justify-between text-xs text-stone-500 dark:text-stone-400 mb-6 pb-2 border-b border-stone-100 dark:border-stone-800/80">
+      <div className="flex items-center justify-between text-xs text-stone-500 mb-6 pb-2 border-b border-stone-200">
         <div>
           Showing <strong>{filteredArticles.length}</strong> of {articles.length} dispatches
           {selectedCategory !== "all" && (
-            <span className="ml-2 px-2 py-0.5 rounded bg-stone-200 dark:bg-stone-800 text-stone-700 dark:text-stone-300">
+            <span className="ml-2 px-2 py-0.5 rounded bg-stone-200 text-stone-700">
               Category: {selectedCategory}
             </span>
           )}
           {searchQuery && (
-            <span className="ml-2 px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950/60 text-amber-900 dark:text-amber-300">
+            <span className="ml-2 px-2 py-0.5 rounded bg-amber-100 text-amber-900">
               Query: "{searchQuery}"
             </span>
           )}
@@ -244,7 +244,7 @@ export function ExplorePage() {
         {(selectedCategory !== "all" || searchQuery) && (
           <button
             onClick={handleResetFilters}
-            className="flex items-center gap-1 text-amber-700 dark:text-amber-400 hover:underline font-medium"
+            className="flex items-center gap-1 text-amber-700 hover:underline font-medium"
           >
             <RotateCcw className="w-3 h-3" />
             <span>Reset filters</span>

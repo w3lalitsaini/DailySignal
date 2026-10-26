@@ -29,7 +29,7 @@ export function AdSlot({
     >
       {/* Editorial compliance disclaimer: ALWAYS distinct from content */}
       <div className="flex items-center justify-center gap-2 mb-2">
-        <span className="text-[10px] tracking-widest uppercase font-semibold text-stone-400 dark:text-stone-500">
+        <span className="text-[10px] tracking-widest uppercase font-semibold text-stone-400">
           — {label} —
         </span>
       </div>
@@ -37,7 +37,7 @@ export function AdSlot({
       <div
         ref={adRef}
         style={{ minHeight }}
-        className="w-full flex items-center justify-center rounded border border-dashed border-stone-200 dark:border-stone-800 bg-stone-50/70 dark:bg-stone-900/40 p-4 transition-colors"
+        className="w-full flex items-center justify-center rounded border border-dashed border-stone-200 bg-stone-50/70 p-4 transition-colors"
       >
         {allowed ? (
           <ins
@@ -50,15 +50,15 @@ export function AdSlot({
           />
         ) : (
           <div className="max-w-md mx-auto text-center py-4 px-2">
-            <div className="inline-flex items-center gap-1.5 text-xs font-medium text-stone-500 dark:text-stone-400 mb-1">
-              <Info className="w-3.5 h-3.5 text-amber-600 dark:text-amber-500" />
+            <div className="inline-flex items-center gap-1.5 text-xs font-medium text-stone-500 mb-1">
+              <Info className="w-3.5 h-3.5 text-amber-700" />
               <span>AdSense Ready Placeholder</span>
             </div>
-            <p className="text-[11px] text-stone-400 dark:text-stone-500 leading-normal">
-              Slot ID: <code className="font-mono text-stone-600 dark:text-stone-300">{slotId}</code> • Format: {format}
+            <p className="text-[11px] text-stone-400 leading-normal">
+              Slot ID: <code className="font-mono text-stone-600">{slotId}</code> • Format: {format}
             </p>
-            <p className="text-[11px] text-stone-400 dark:text-stone-500 mt-1">
-              Activates automatically when <code className="font-mono text-[10px] bg-stone-200 dark:bg-stone-800 px-1 py-0.5 rounded">VITE_ADSENSE_CLIENT_ID</code> is configured in <code className="font-mono text-[10px]">.env</code> and user grants advertising consent.
+            <p className="text-[11px] text-stone-400 mt-1">
+              Activates automatically when <code className="font-mono text-[10px] bg-stone-200 px-1 py-0.5 rounded">VITE_ADSENSE_CLIENT_ID</code> is configured in <code className="font-mono text-[10px]">.env</code> and user grants advertising consent.
             </p>
           </div>
         )}

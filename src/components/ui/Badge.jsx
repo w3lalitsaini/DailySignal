@@ -5,7 +5,7 @@ import { categories } from "../../data/categories";
 export function CategoryBadge({ categorySlug, size = "md", clickable = true }) {
   const category = categories.find((c) => c.slug === categorySlug);
   const name = category ? category.name : categorySlug;
-  const badgeStyle = category?.badgeBg || "bg-stone-100 text-stone-800 dark:bg-stone-800 dark:text-stone-200 border-stone-200 dark:border-stone-700";
+  const badgeStyle = category?.badgeBg || "bg-stone-100 text-stone-800 border-stone-200";
 
   const sizeClasses = {
     sm: "text-[11px] px-2 py-0.5 tracking-wider",
@@ -38,7 +38,7 @@ export function CategoryBadge({ categorySlug, size = "md", clickable = true }) {
 
 export function TagBadge({ tag, clickable = true }) {
   const content = (
-    <span className="inline-flex items-center text-xs px-2.5 py-1 rounded bg-stone-100 dark:bg-stone-800/80 text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white border border-stone-200 dark:border-stone-700/60 transition-colors">
+    <span className="inline-flex items-center text-xs px-2.5 py-1 rounded bg-stone-100 text-stone-600 hover:text-stone-900 border border-stone-200 transition-colors">
       #{tag}
     </span>
   );

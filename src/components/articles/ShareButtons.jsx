@@ -25,13 +25,13 @@ export function ShareButtons({ title, text, url, className = "" }) {
     <div className={`flex items-center gap-2 ${className}`}>
       <button
         onClick={handleShare}
-        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 text-xs font-medium transition cursor-pointer shadow-sm"
+        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-stone-200 bg-white text-stone-700 hover:bg-stone-50 text-xs font-medium transition cursor-pointer shadow-xs"
         title="Share or copy article link"
       >
         {copied ? (
           <>
-            <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-            <span className="text-emerald-600 dark:text-emerald-400">Link Copied!</span>
+            <Check className="w-3.5 h-3.5 text-emerald-600" />
+            <span className="text-emerald-700 font-medium">Link Copied!</span>
           </>
         ) : (
           <>
@@ -46,7 +46,7 @@ export function ShareButtons({ title, text, url, className = "" }) {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Share on X / Twitter"
-        className="p-2 rounded-full border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white hover:bg-stone-50 dark:hover:bg-stone-800 transition"
+        className="p-2 rounded-full border border-stone-200 bg-white text-stone-600 hover:text-stone-900 hover:bg-stone-50 transition"
       >
         <TwitterIcon className="w-3.5 h-3.5" />
       </a>
@@ -56,7 +56,7 @@ export function ShareButtons({ title, text, url, className = "" }) {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Share on LinkedIn"
-        className="p-2 rounded-full border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white hover:bg-stone-50 dark:hover:bg-stone-800 transition"
+        className="p-2 rounded-full border border-stone-200 bg-white text-stone-600 hover:text-stone-900 hover:bg-stone-50 transition"
       >
         <LinkedinIcon className="w-3.5 h-3.5" />
       </a>

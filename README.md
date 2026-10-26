@@ -1,6 +1,6 @@
 # DailySignal — Premium Digital Magazine & Editorial Blog
 
-> A production-minded, high-performance editorial publication frontend built with React 19, Vite, Tailwind CSS v4, React Router 7, and Lucide Icons. Features 15 original, deeply researched articles, dark mode, offline bookmarks queue, reading progress, Google Analytics 4 integration, Google AdSense preparation, and client-side SEO.
+> A production-minded, high-performance editorial publication frontend built with React 19, Vite, Tailwind CSS v4, React Router 7, and Lucide Icons. Features 25 original, deeply researched articles, warm editorial light theme, offline bookmarks queue, reading progress, Google Analytics 4 integration, Google AdSense preparation, and client-side SEO.
 
 ---
 
@@ -102,6 +102,16 @@
 13. **The Next Generation of Renewable Energy: Grid Storage, Next-Gen Solar, and Decentralized Grids** (`renewable-energy-technologies`)
 14. **Essential Developer and Student Toolbelt: 12 Open-Source and High-Utility Applications** (`useful-apps-for-students-and-developers`)
 15. **Building and Monetizing a Niche Editorial Publication: From First 1,000 Readers to Revenue** (`starting-niche-blog-and-monetizing-it`)
+16. **Running Local LLMs on Consumer Silicon: Quantization, Ollama, and Hardware Realities** (`local-llms-apple-silicon-consumer-gpus-ollama-quantization`)
+17. **Modern CSS in 2026: Container Queries, Subgrid, and Native View Transitions** (`modern-css-in-2026-container-queries-subgrid-view-transitions`)
+18. **Passkeys and WebAuthn: Engineering a Phishing-Resistant Identity Layer** (`passkeys-webauthn-engineering-resilient-identity-layer`)
+19. **SaaS Unit Economics in the Post-ZIRP Era: Net Revenue Retention and CAC Payback** (`saas-unit-economics-post-zirp-retention-cac-payback`)
+20. **The Asynchronous Engineering Team: High-Context Documentation Over Endless Meetings** (`asynchronous-engineering-team-high-context-documentation`)
+21. **Solid-State Batteries and Next-Gen Grid Storage: The Engineering Behind the Clean Transition** (`solid-state-batteries-grid-storage-energy-transition`)
+22. **Zero-Downtime Database Migrations at Scale: Expand and Contract in PostgreSQL** (`zero-downtime-database-migrations-scale-postgres`)
+23. **Software Supply Chain Security: Hardening npm, PyPI, and CI/CD Build Pipelines** (`software-supply-chain-security-npm-pypi-cicd-pipelines`)
+24. **Vector Databases & Hybrid Search: Combining Dense Embeddings with BM25 Lexical Retrieval** (`vector-databases-hybrid-search-bm25-dense-embeddings`)
+25. **The Architecture of a High-Conversion Editorial Newsletter: Deliverability, Open Rates, and Retention** (`architecture-high-conversion-editorial-newsletter-deliverability`)
 
 ---
 

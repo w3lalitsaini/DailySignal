@@ -23,8 +23,8 @@ import {
 export function HomePage() {
   const featuredArticle = getFeaturedArticle();
   const trendingArticles = getTrendingArticles(4);
-  const latestArticles = articles.filter((a) => a.id !== featuredArticle?.id).slice(0, 6);
-  const popularArticles = articles.slice(2, 6);
+  const latestArticles = articles.filter((a) => a.id !== featuredArticle?.id).slice(0, 9);
+  const popularArticles = articles.slice(2, 7);
 
   useEffect(() => {
     updateSEO({
@@ -122,7 +122,7 @@ export function HomePage() {
             to="/articles"
             className="text-xs font-semibold text-amber-700 hover:underline flex items-center gap-1"
           >
-            <span>Browse All 15 Articles</span>
+            <span>Browse All 25 Articles</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
@@ -138,9 +138,9 @@ export function HomePage() {
             {/* In-Feed Advertisement Placement */}
             <FeedAd />
 
-            {/* Supporting 2-Column Grid */}
+            {/* Supporting Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
-              {latestArticles.slice(1, 5).map((art) => (
+              {latestArticles.slice(1, 7).map((art) => (
                 <ArticleCard key={art.id} article={art} layout="vertical" />
               ))}
             </div>

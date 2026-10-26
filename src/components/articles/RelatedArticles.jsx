@@ -7,13 +7,13 @@ export function RelatedArticles({ currentSlug }) {
   if (!related || related.length === 0) return null;
 
   return (
-    <section aria-label="Related Dispatches" className="my-16 pt-12 border-t border-stone-200 dark:border-stone-800">
+    <section aria-label="Related Dispatches" className="my-16 pt-12 border-t border-stone-200">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <span className="text-xs uppercase tracking-widest text-amber-700 dark:text-amber-500 font-semibold">
+          <span className="text-xs uppercase tracking-widest text-amber-800 font-semibold">
             Further Reading
           </span>
-          <h3 className="font-serif text-2xl font-medium text-stone-900 dark:text-stone-100 mt-1">
+          <h3 className="font-serif text-2xl font-medium text-stone-900 mt-1">
             Related Dispatches & Deep Dives
           </h3>
         </div>

@@ -35,7 +35,7 @@ export function SearchPage() {
     } else {
       updateSEO({
         title: "Search DailySignal Dispatches",
-        description: "Search all 15 articles across technology, engineering, privacy, and economics."
+        description: "Search all 25 articles across technology, engineering, privacy, and economics."
       });
     }
   }, [qParam]);
@@ -61,15 +61,15 @@ export function SearchPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       <div className="max-w-2xl mx-auto text-center mb-10">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 mb-3">
-          <Search className="w-3.5 h-3.5 text-amber-600 dark:text-amber-500" />
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-stone-100 text-stone-700 mb-3 border border-stone-200">
+          <Search className="w-3.5 h-3.5 text-amber-700" />
           <span>Full Archive Search</span>
         </div>
-        <h1 className="font-serif text-3xl sm:text-4xl font-medium text-stone-950 dark:text-stone-50 mb-3">
+        <h1 className="font-serif text-3xl sm:text-5xl font-medium text-stone-950 mb-3">
           Search the DailySignal Archives
         </h1>
-        <p className="text-sm text-stone-600 dark:text-stone-400">
-          Instant full-text index across all 15 technical investigations and deep-dive reports.
+        <p className="text-sm text-stone-600">
+          Instant full-text index across all 25 technical investigations and deep-dive reports.
         </p>
 
         <div className="mt-6">
@@ -83,14 +83,14 @@ export function SearchPage() {
 
         {/* Suggested Queries */}
         <div className="mt-4 flex flex-wrap items-center justify-center gap-1.5 text-xs">
-          <span className="text-stone-400 dark:text-stone-500 flex items-center gap-1 text-[11px]">
-            <Sparkles className="w-3 h-3 text-amber-500" /> Suggestions:
+          <span className="text-stone-400 flex items-center gap-1 text-[11px]">
+            <Sparkles className="w-3 h-3 text-amber-600" /> Suggestions:
           </span>
           {SUGGESTED_QUERIES.map((sq) => (
             <button
               key={sq}
               onClick={() => handleSelectSuggested(sq)}
-              className="px-2.5 py-1 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-700 transition text-[11px]"
+              className="px-2.5 py-1 rounded-full bg-stone-100 text-stone-700 hover:bg-stone-200 border border-stone-200 transition text-[11px]"
             >
               {sq}
             </button>
@@ -99,12 +99,12 @@ export function SearchPage() {
       </div>
 
       {/* Results Header */}
-      <div className="flex items-center justify-between text-xs text-stone-500 dark:text-stone-400 mb-6 pb-2 border-b border-stone-100 dark:border-stone-800">
+      <div className="flex items-center justify-between text-xs text-stone-500 mb-6 pb-2 border-b border-stone-200">
         <span>
           {query ? (
             <>
               Found <strong>{results.length}</strong> {results.length === 1 ? "story" : "stories"} for "
-              <span className="text-stone-900 dark:text-stone-100 font-medium">{query}</span>"
+              <span className="text-stone-900 font-medium">{query}</span>"
             </>
           ) : (
             <>Showing all <strong>{results.length}</strong> available stories</>

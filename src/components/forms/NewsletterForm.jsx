@@ -44,23 +44,23 @@ export function NewsletterForm({
 
   if (status === "success") {
     return (
-      <div className="rounded-xl border border-emerald-200 dark:border-emerald-800/60 bg-emerald-50/50 dark:bg-emerald-950/20 p-6 text-center animate-in fade-in duration-300">
-        <div className="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/60 text-emerald-600 dark:text-emerald-400 mx-auto flex items-center justify-center mb-3">
+      <div className="rounded-xl border border-emerald-200 bg-emerald-50/50 p-6 text-center animate-in fade-in duration-300">
+        <div className="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center mb-3">
           <Check className="w-5 h-5" />
         </div>
-        <h4 className="font-serif font-medium text-stone-900 dark:text-stone-100 text-base mb-1">
+        <h4 className="font-serif font-medium text-stone-900 text-base mb-1">
           Demo Subscription Recorded!
         </h4>
-        <p className="text-xs text-stone-600 dark:text-stone-400 mb-3 max-w-sm mx-auto">
-          You subscribed with <strong className="font-semibold text-stone-800 dark:text-stone-200">{email}</strong>.
+        <p className="text-xs text-stone-600 mb-3 max-w-sm mx-auto">
+          You subscribed with <strong className="font-semibold text-stone-800">{email}</strong>.
         </p>
-        <div className="inline-block bg-amber-100/70 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 text-[11px] px-3 py-1 rounded-full border border-amber-200 dark:border-amber-800/50 mb-3">
+        <div className="inline-block bg-amber-100/70 text-amber-800 text-[11px] px-3 py-1 rounded-full border border-amber-200 mb-3">
           Notice: Frontend demo mode active. No emails are dispatched until connected to an ESP.
         </div>
         <div>
           <button
             onClick={handleReset}
-            className="text-xs underline text-stone-500 hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-200"
+            className="text-xs underline text-stone-500 hover:text-stone-800"
           >
             Enter another address
           </button>
@@ -83,24 +83,24 @@ export function NewsletterForm({
                 if (status === "error") setStatus("idle");
               }}
               placeholder="Your professional email..."
-              className="w-full pl-10 pr-24 py-2.5 text-xs rounded-lg border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-stone-400 dark:focus:ring-stone-600"
+              className="w-full pl-10 pr-24 py-2.5 text-xs rounded-lg border border-stone-200 bg-white text-stone-900 focus:outline-none focus:ring-2 focus:ring-stone-400"
             />
             <button
               type="submit"
               disabled={status === "loading"}
-              className="absolute right-1.5 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-md bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-900 text-xs font-medium hover:bg-stone-800 dark:hover:bg-white transition"
+              className="absolute right-1.5 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-md bg-stone-900 text-white text-xs font-medium hover:bg-stone-800 transition"
             >
               Join
             </button>
           </div>
           {status === "error" && (
-            <p className="text-[11px] text-red-600 dark:text-red-400 flex items-center gap-1">
+            <p className="text-[11px] text-red-600 flex items-center gap-1">
               <AlertCircle className="w-3 h-3" />
               {errorMsg}
             </p>
           )}
         </form>
-        <p className="text-[10px] text-stone-400 dark:text-stone-500 mt-2">
+        <p className="text-[10px] text-stone-400 mt-2">
           Frontend demo mode • No spam, ever. Unsubscribe anytime.
         </p>
       </div>
@@ -109,18 +109,18 @@ export function NewsletterForm({
 
   // Default "card" variant
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-stone-200 dark:border-stone-800/80 bg-gradient-to-b from-stone-50 to-white dark:from-stone-900/60 dark:to-stone-900/20 p-8 md:p-10">
+    <div className="relative overflow-hidden rounded-2xl border border-stone-200 bg-white p-8 md:p-10 shadow-xs">
       <div className="max-w-2xl mx-auto text-center">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800/50 mb-4">
-          <Sparkles className="w-3.5 h-3.5" />
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-800 border border-amber-200 mb-4">
+          <Sparkles className="w-3.5 h-3.5 text-amber-600" />
           <span>Curated Sunday Digest</span>
         </div>
 
-        <h3 className="text-2xl md:text-3xl font-serif font-medium text-stone-900 dark:text-stone-100 tracking-tight mb-3">
+        <h3 className="text-2xl md:text-3xl font-serif font-medium text-stone-900 tracking-tight mb-3">
           {title}
         </h3>
 
-        <p className="text-sm text-stone-600 dark:text-stone-400 leading-relaxed mb-6 max-w-xl mx-auto">
+        <p className="text-sm text-stone-600 leading-relaxed mb-6 max-w-xl mx-auto">
           {description}
         </p>
 
@@ -137,14 +137,14 @@ export function NewsletterForm({
                 }}
                 placeholder="developer@company.com"
                 aria-label="Email address"
-                className="w-full pl-10 pr-4 py-3 text-sm rounded-lg border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-400 dark:focus:ring-stone-600"
+                className="w-full pl-10 pr-4 py-3 text-sm rounded-lg border border-stone-200 bg-white text-stone-900 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-400"
               />
             </div>
 
             <button
               type="submit"
               disabled={status === "loading"}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-medium rounded-lg bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-900 hover:bg-stone-800 dark:hover:bg-white transition cursor-pointer shadow-sm shrink-0"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-medium rounded-lg bg-stone-900 text-white hover:bg-stone-800 transition cursor-pointer shadow-sm shrink-0"
             >
               <span>Subscribe Free</span>
               <ArrowRight className="w-4 h-4" />
@@ -152,13 +152,13 @@ export function NewsletterForm({
           </div>
 
           {status === "error" && (
-            <p className="text-xs text-red-600 dark:text-red-400 flex items-center justify-center gap-1">
+            <p className="text-xs text-red-600 flex items-center justify-center gap-1">
               <AlertCircle className="w-3.5 h-3.5" />
               {errorMsg}
             </p>
           )}
 
-          <div className="flex items-center justify-center gap-2 pt-2 text-[11px] text-stone-400 dark:text-stone-500">
+          <div className="flex items-center justify-center gap-2 pt-2 text-[11px] text-stone-400">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
             <span>Frontend demo: Validates input locally. No real email dispatch without ESP configuration.</span>
           </div>

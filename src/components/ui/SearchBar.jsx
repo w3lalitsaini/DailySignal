@@ -4,7 +4,7 @@ import { Search, X } from "lucide-react";
 
 export function SearchBar({
   initialValue = "",
-  placeholder = "Search 15 curated dispatches by topic, keyword, or author...",
+  placeholder = "Search 25 curated dispatches by topic, keyword, or author...",
   onSearchChange = null,
   autoNavigate = false,
   className = ""
@@ -53,13 +53,13 @@ export function SearchBar({
           value={query}
           onChange={handleChange}
           placeholder={placeholder}
-          className="w-full pl-11 pr-10 py-3 text-sm rounded-lg border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-400 dark:focus:ring-stone-600 transition"
+          className="w-full pl-11 pr-10 py-3 text-sm rounded-lg border border-stone-200 bg-white text-stone-900 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-400 transition"
         />
         {query && (
           <button
             type="button"
             onClick={handleClear}
-            className="absolute right-3.5 p-1 text-stone-400 hover:text-stone-600 dark:hover:text-stone-200"
+            className="absolute right-3.5 p-1 text-stone-400 hover:text-stone-700"
             aria-label="Clear search query"
           >
             <X className="w-4 h-4" />

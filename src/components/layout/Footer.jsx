@@ -110,7 +110,7 @@ export function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link to="/articles" className="hover:text-stone-900 transition">
-                  All 15 Stories
+                  All 25 Stories
                 </Link>
               </li>
               <li>

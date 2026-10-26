@@ -22,9 +22,9 @@ export function TagPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       <nav aria-label="Breadcrumbs" className="mb-6">
-        <ol className="flex items-center space-x-2 text-xs text-stone-500 dark:text-stone-400">
+        <ol className="flex items-center space-x-2 text-xs text-stone-500">
           <li>
-            <Link to="/" className="hover:text-stone-900 dark:hover:text-white transition">
+            <Link to="/" className="hover:text-stone-900 transition">
               Home
             </Link>
           </li>
@@ -32,29 +32,29 @@ export function TagPage() {
             <ChevronRight className="w-3 h-3 text-stone-400" />
           </li>
           <li>
-            <Link to="/articles" className="hover:text-stone-900 dark:hover:text-white transition">
+            <Link to="/articles" className="hover:text-stone-900 transition">
               Tags
             </Link>
           </li>
           <li>
             <ChevronRight className="w-3 h-3 text-stone-400" />
           </li>
-          <li className="font-semibold text-stone-800 dark:text-stone-200">
+          <li className="font-semibold text-stone-900">
             #{decodedTag}
           </li>
         </ol>
       </nav>
 
-      <div className="mb-10 pb-6 border-b border-stone-200 dark:border-stone-800">
-        <div className="flex items-center gap-2 text-amber-700 dark:text-amber-500 mb-2">
-          <Hash className="w-5 h-5" />
+      <div className="mb-10 pb-6 border-b border-stone-200">
+        <div className="flex items-center gap-2 text-amber-800 mb-2">
+          <Hash className="w-5 h-5 text-amber-700" />
           <span className="text-xs uppercase font-bold tracking-wider">Subject Tag</span>
         </div>
-        <h1 className="font-serif text-3xl sm:text-4xl font-medium text-stone-950 dark:text-stone-50 mb-2">
-          {decodedTag}
+        <h1 className="font-serif text-3xl sm:text-5xl font-medium text-stone-950 mb-2">
+          #{decodedTag}
         </h1>
-        <p className="text-sm text-stone-600 dark:text-stone-400">
-          Showing {articlesList.length} articles matching tag "{decodedTag}"
+        <p className="text-sm text-stone-600">
+          Showing {articlesList.length} articles matching tag "#{decodedTag}"
         </p>
       </div>
 

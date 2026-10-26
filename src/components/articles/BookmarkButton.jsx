@@ -31,8 +31,8 @@ export function BookmarkButton({ slug, title = "", size = "md", showLabel = fals
       title={bookmarked ? "Bookmarked" : "Bookmark this story"}
       className={`inline-flex items-center gap-1.5 rounded-full transition-colors ${
         bookmarked
-          ? "bg-amber-100 text-amber-800 dark:bg-amber-950/70 dark:text-amber-300"
-          : "bg-stone-100/80 text-stone-600 dark:bg-stone-800/80 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-700"
+          ? "bg-amber-100 text-amber-800"
+          : "bg-stone-100 text-stone-600 hover:bg-stone-200"
       } ${sizeClasses} ${className}`}
     >
       <Bookmark
