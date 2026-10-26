@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Newsreader", Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-reading: "Lora", Georgia, Cambria, serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+}
+
+@layer base {
+  :root {
+    --bg-primary: #fafaf9;
+    --bg-secondary: #f4f4f5;
+    --bg-card: #ffffff;
+    --text-primary: #111827;
+    --text-secondary: #374151;
+    --text-muted: #6b7280;
+    --border-subtle: #e5e7eb;
+    --accent: #c2410c; /* Editorial terracotta */
+    --accent-light: #fff7ed;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .font-serif-editorial {
+    font-family: var(--font-serif);
+    letter-spacing: -0.018em;
+  }
+}
+
+/* Custom font utility classes */
+.font-serif {
+  font-family: "Newsreader", Georgia, Cambria, serif;
+}
+
+.font-reading {
+  font-family: "Lora", Georgia, Cambria, serif;
+}
+
+.font-sans {
+  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.font-mono {
+  font-family: "JetBrains Mono", monospace;
+}
+
+/* Editorial selection */
+::selection {
+  background: rgba(194, 65, 12, 0.18);
+  color: #111827;
+}
+
+/* Article typography reader styling */
+.article-prose {
+  font-family: "Lora", Georgia, Cambria, serif;
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.85;
+  color: #1f2937; /* high-contrast dark text */
+}
+
+@media (min-width: 640px) {
+  .article-prose {
+    font-size: 1.1875rem; /* 19px */
+    line-height: 1.88;
+  }
+}
+
+.article-prose p {
+  margin-bottom: 1.5rem;
+}
+
+/* Smooth reading line clamp */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Table of contents active link marker */
+.toc-link.active {
+  font-weight: 600;
+  color: #c2410c;
+  border-left-color: #c2410c;
+}

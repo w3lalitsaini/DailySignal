@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DailySignal — Independent Tech &amp; Engineering Review</title>
+    <link>https://dailysignal.dev</link>
+    <description>In-depth engineering analysis, investigative reporting, digital security guides, and architectural deep-dives.</description>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 22 Mar 2026 12:00:00 GMT</lastBuildDate>
+    <atom:link href="https://dailysignal.dev/rss.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>AI Agents: Capabilities, Tool Use, and Practical Engineering Limitations</title>
+      <link>https://dailysignal.dev/article/ai-agents-capabilities-and-limitations</link>
+      <guid>https://dailysignal.dev/article/ai-agents-capabilities-and-limitations</guid>
+      <pubDate>Wed, 18 Mar 2026 08:00:00 GMT</pubDate>
+      <description>Behind the hype of autonomous reasoning lies a delicate reality of prompt drift, fragile context windows, and tool orchestration failures.</description>
+    </item>
+
+    <item>
+      <title>AI Coding Assistants in Modern Software Teams: Velocity, Verification, and Code Quality</title>
+      <link>https://dailysignal.dev/article/ai-coding-tools-software-development</link>
+      <guid>https://dailysignal.dev/article/ai-coding-tools-software-development</guid>
+      <pubDate>Mon, 16 Mar 2026 08:00:00 GMT</pubDate>
+      <description>AI completion tools generate code faster than ever, but senior engineers are spending twice as long reviewing pull requests.</description>
+    </item>
+
+    <item>
+      <title>Recognizing Online Scams in India: A Field Guide to Digital Arrests, Part-Time Job Frauds, and Phishing</title>
+      <link>https://dailysignal.dev/article/recognizing-online-scams-in-india</link>
+      <guid>https://dailysignal.dev/article/recognizing-online-scams-in-india</guid>
+      <pubDate>Sat, 14 Mar 2026 08:00:00 GMT</pubDate>
+      <description>Organized cybercrime syndicates are siphoning thousands of crores using sophisticated psychological manipulation and counterfeit police interfaces.</description>
+    </item>
+
+    <item>
+      <title>UPI Safety and Secure Digital Transactions: Essential Safeguards for Modern Banking</title>
+      <link>https://dailysignal.dev/article/upi-safety-and-digital-payments</link>
+      <guid>https://dailysignal.dev/article/upi-safety-and-digital-payments</guid>
+      <pubDate>Thu, 12 Mar 2026 08:00:00 GMT</pubDate>
+      <description>The Unified Payments Interface powers over 14 billion transactions monthly. Here is how modern payment protocols work under the hood.</description>
+    </item>
+
+    <item>
+      <title>Electric Vehicle Ownership in India: Charging Realities, Total Cost, and Battery Lifespans</title>
+      <link>https://dailysignal.dev/article/electric-vehicle-ownership-in-india</link>
+      <guid>https://dailysignal.dev/article/electric-vehicle-ownership-in-india</guid>
+      <pubDate>Tue, 10 Mar 2026 08:00:00 GMT</pubDate>
+      <description>Moving beyond brochure promises: a real-world assessment of charging infrastructure, battery degradation in 45°C summer heat, and the true 5-year total cost of ownership.</description>
+    </item>
+  </channel>
+</rss>
