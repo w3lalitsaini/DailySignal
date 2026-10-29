@@ -3,18 +3,26 @@ import { Link } from "react-router-dom";
 import { getTrendingArticles } from "../data/articles";
 import { ArticleCard } from "../components/articles/ArticleCard";
 import { updateSEO } from "../lib/seo";
-import { TrendingUp, Flame, ChevronRight, Sparkles } from "lucide-react";
+import { Flame, ChevronRight } from "lucide-react";
 
 export function TrendingPage() {
   const trendingList = getTrendingArticles(12);
 
   useEffect(() => {
     updateSEO({
-      title: "Trending Dispatches — DailySignal",
-      description: "The most widely read and referenced technical investigations on DailySignal right now.",
+      title: "Trending Tech Vlogs & Dispatches — Most Read Engineering Insights",
+      description: "The most widely read and referenced technical investigations and video vlogs on DailySignal right now.",
+      keywords: [
+        "trending tech stories",
+        "viral engineering articles",
+        "popular developer vlogs",
+        "ai tech trends",
+        "software architectural deep dives"
+      ],
+      image: trendingList[0]?.heroImage || "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1600&q=80",
       ogType: "website"
     });
-  }, []);
+  }, [trendingList]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
@@ -53,13 +61,10 @@ export function TrendingPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
         {trendingList.map((article, index) => (
-          <div key={article.id} className="relative group">
-            <div className="absolute top-3 left-3 z-10 w-7 h-7 rounded-full bg-stone-900/90 text-white flex items-center justify-center text-xs font-bold font-serif shadow-md pointer-events-none">
-              #{index + 1}
-            </div>
-            <ArticleCard article={article} layout="vertical" />
+          <div key={article.id} className="relative group h-full">
+            <ArticleCard article={article} layout="vertical" rankNumber={index + 1} />
           </div>
         ))}
       </div>

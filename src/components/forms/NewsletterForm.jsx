@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Mail, Check, AlertCircle, ArrowRight, Sparkles } from "lucide-react";
 import { trackNewsletter } from "../../lib/analytics";
+import { siteConfig } from "../../data/siteConfig";
+
+const FORMSPREE_ENDPOINT = siteConfig.contactFormEndpoint || "https://formspree.io/f/mnnzblkd";
 
 export function NewsletterForm({
   variant = "card", // "card" | "compact" | "inline"
@@ -17,7 +20,7 @@ export function NewsletterForm({
       .match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email || !validateEmail(email)) {
       setStatus("error");
@@ -29,11 +32,38 @@ export function NewsletterForm({
     setStatus("loading");
     trackNewsletter("attempted", variant);
 
-    // Simulate friendly frontend demo delay
-    setTimeout(() => {
-      setStatus("success");
-      trackNewsletter("submitted_demo", variant);
-    }, 600);
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          email: email.trim(),
+          subscription: title,
+          variant,
+          formType: "Newsletter Subscription",
+          source: "DailySignal Brief",
+          subscribedAt: new Date().toISOString()
+        })
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        trackNewsletter("submitted_formspree", variant);
+      } else {
+        const data = await response.json().catch(() => null);
+        setStatus("error");
+        setErrorMsg(
+          data?.error || data?.errors?.map((err) => err.message).join(", ") || "Failed to subscribe. Please try again."
+        );
+      }
+    } catch (err) {
+      console.error("Newsletter submission error:", err);
+      setStatus("error");
+      setErrorMsg("Network error contacting server. Please check your connection and retry.");
+    }
   };
 
   const handleReset = () => {
@@ -44,23 +74,23 @@ export function NewsletterForm({
 
   if (status === "success") {
     return (
-      <div className="rounded-xl border border-emerald-200 bg-emerald-50/50 p-6 text-center animate-in fade-in duration-300">
-        <div className="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center mb-3">
+      <div className="rounded-xl border border-emerald-200 bg-emerald-50/60 p-6 text-center animate-in fade-in duration-300">
+        <div className="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 mx-auto flex items-center justify-center mb-3">
           <Check className="w-5 h-5" />
         </div>
-        <h4 className="font-serif font-medium text-stone-900 text-base mb-1">
-          Demo Subscription Recorded!
+        <h4 className="font-serif font-bold text-stone-900 text-base mb-1">
+          Subscription Confirmed!
         </h4>
-        <p className="text-xs text-stone-600 mb-3 max-w-sm mx-auto">
-          You subscribed with <strong className="font-semibold text-stone-800">{email}</strong>.
+        <p className="text-xs text-stone-600 mb-2 max-w-sm mx-auto">
+          You are subscribed with <strong className="font-semibold text-stone-800">{email}</strong>.
         </p>
-        <div className="inline-block bg-amber-100/70 text-amber-800 text-[11px] px-3 py-1 rounded-full border border-amber-200 mb-3">
-          Notice: Frontend demo mode active. No emails are dispatched until connected to an ESP.
-        </div>
+        <p className="text-xs text-stone-500 mb-3">
+          We've added your address to the Sunday dispatch digest.
+        </p>
         <div>
           <button
             onClick={handleReset}
-            className="text-xs underline text-stone-500 hover:text-stone-800"
+            className="text-xs underline text-stone-500 hover:text-stone-800 cursor-pointer"
           >
             Enter another address
           </button>
@@ -101,7 +131,7 @@ export function NewsletterForm({
           )}
         </form>
         <p className="text-[10px] text-stone-400 mt-2">
-          Frontend demo mode • No spam, ever. Unsubscribe anytime.
+          No spam, ever. Unsubscribe at any time.
         </p>
       </div>
     );
@@ -158,9 +188,9 @@ export function NewsletterForm({
             </p>
           )}
 
-          <div className="flex items-center justify-center gap-2 pt-2 text-[11px] text-stone-400">
+          <div className="flex items-center justify-center gap-2 pt-2 text-[11px] text-stone-500">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-            <span>Frontend demo: Validates input locally. No real email dispatch without ESP configuration.</span>
+            <span>Direct delivery to our editorial dispatch desk. Privacy guaranteed.</span>
           </div>
         </form>
       </div>

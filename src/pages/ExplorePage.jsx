@@ -34,8 +34,17 @@ export function ExplorePage() {
 
   useEffect(() => {
     updateSEO({
-      title: "All Articles & Dispatches — DailySignal",
+      title: "All Articles & Dispatches — Complete 25 Story Archive",
       description: "Browse all 25 in-depth technical investigations, software architecture reviews, and cybersecurity analysis.",
+      keywords: [
+        "all articles",
+        "engineering stories archive",
+        "tech vlogs collection",
+        "software tutorials",
+        "architecture dispatches",
+        "system design guides"
+      ],
+      image: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1600&q=80",
       ogType: "website"
     });
   }, []);
@@ -257,7 +266,7 @@ export function ExplorePage() {
         <div
           className={
             viewMode === "grid"
-              ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              ? "grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6"
               : "space-y-4 max-w-4xl mx-auto"
           }
         >

@@ -28,26 +28,38 @@ export function HomePage() {
 
   useEffect(() => {
     updateSEO({
-      title: "DailySignal — Independent Tech, AI & Digital Culture Magazine",
+      title: "DailySignal — Tech, Engineering & Digital Culture Vlogs & Dispatches",
       description: "In-depth engineering analysis, investigative reporting, digital security guides, and architectural deep-dives for developers, founders, and curious minds.",
+      keywords: [
+        "tech vlogs",
+        "engineering dispatches",
+        "software architecture",
+        "ai agents",
+        "developer tutorials",
+        "frontend performance",
+        "cybersecurity investigations",
+        "web development",
+        "system design"
+      ],
+      image: featuredArticle?.heroImage || "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1600&q=80",
       ogType: "website"
     });
-  }, []);
+  }, [featuredArticle]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-      {/* 1. Editorial Hero */}
-      <ArticleHero article={featuredArticle} />
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12">
+      {/* 1. Redesigned Editorial Hero Section */}
+      <ArticleHero article={featuredArticle} secondaryArticles={popularArticles} />
 
-      {/* 2. Trending Now Section */}
-      <section aria-label="Trending Dispatches" className="mb-16">
-        <div className="flex items-center justify-between pb-3 mb-6 border-b border-stone-200">
+      {/* 2. Trending Dispatches & Vlogs Section (2 cards per row on mobile) */}
+      <section aria-label="Trending Dispatches & Vlogs" className="mb-14 sm:mb-16">
+        <div className="flex items-center justify-between pb-3 mb-5 border-b border-stone-200">
           <div className="flex items-center gap-2">
             <span className="p-1 rounded bg-amber-500/10 text-amber-600">
               <Flame className="w-4 h-4" />
             </span>
             <h3 className="text-xs font-bold uppercase tracking-wider font-sans text-stone-900">
-              Trending Dispatches
+              Trending Dispatches & Vlogs
             </h3>
           </div>
           <Link
@@ -59,21 +71,22 @@ export function HomePage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Responsive Grid: 2 columns on mobile, 4 columns on desktop */}
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           {trendingArticles.map((art, index) => (
             <ArticleCard
               key={art.id}
               article={art}
-              layout="numbered"
+              layout="vertical"
               rankNumber={index + 1}
             />
           ))}
         </div>
       </section>
 
-      {/* 3. Category Showcase Bar */}
-      <section aria-label="Explore Categories" className="mb-16">
-        <div className="flex items-center justify-between pb-3 mb-6 border-b border-stone-200">
+      {/* 3. Curated Fields of Inquiry Showcase with Associated Images */}
+      <section aria-label="Explore Categories" className="mb-14 sm:mb-16">
+        <div className="flex items-center justify-between pb-3 mb-5 border-b border-stone-200">
           <div className="flex items-center gap-2">
             <span className="p-1 rounded bg-blue-500/10 text-blue-600">
               <Layers className="w-4 h-4" />
@@ -82,47 +95,55 @@ export function HomePage() {
               Curated Fields of Inquiry
             </h3>
           </div>
+          <span className="text-[11px] text-stone-400 font-mono hidden sm:inline">
+            6 Specialized Verticals
+          </span>
         </div>
 
+        {/* Category cards with associated imagery */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
           {categories.map((cat) => (
             <Link
               key={cat.id}
               to={`/category/${cat.slug}`}
-              className="group p-4 rounded-xl border border-stone-200/90 bg-white hover:border-amber-500 hover:shadow-xs transition text-left flex flex-col justify-between h-28"
+              className="group relative rounded-xl border border-stone-200 overflow-hidden bg-stone-900 h-32 sm:h-36 flex flex-col justify-end p-3 hover:shadow-md transition-all"
             >
-              <div>
-                <span className="text-[10px] uppercase font-bold text-stone-400 tracking-wider">
-                  Field
+              <img
+                src={cat.image}
+                alt={cat.name}
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover opacity-45 group-hover:opacity-60 group-hover:scale-105 transition-all duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/60 to-transparent" />
+              <div className="relative z-10">
+                <span className="text-[9px] uppercase font-mono font-bold text-amber-400 tracking-wider">
+                  {cat.articleCount} Dispatches
                 </span>
-                <h4 className="text-sm font-semibold text-stone-900 group-hover:text-amber-700 transition-colors mt-0.5">
+                <h4 className="text-xs sm:text-sm font-bold text-white group-hover:text-amber-200 transition-colors mt-0.5 leading-snug">
                   {cat.name}
                 </h4>
               </div>
-              <span className="text-[11px] text-stone-400 font-medium">
-                {cat.articleCount} Dispatches &rarr;
-              </span>
             </Link>
           ))}
         </div>
       </section>
 
-      {/* 4. Latest Articles Grid with Sidebar */}
-      <section aria-label="Latest Articles" className="mb-16">
-        <div className="flex items-center justify-between pb-3 mb-6 border-b border-stone-200">
+      {/* 4. Latest Articles & Vlogs Grid with Sidebar (2 cards per row on mobile) */}
+      <section aria-label="Latest Articles & Vlogs" className="mb-14 sm:mb-16">
+        <div className="flex items-center justify-between pb-3 mb-5 border-b border-stone-200">
           <div className="flex items-center gap-2">
             <span className="p-1 rounded bg-stone-500/10 text-stone-700">
               <BookOpen className="w-4 h-4" />
             </span>
             <h3 className="text-xs font-bold uppercase tracking-wider font-sans text-stone-900">
-              Latest Investigative Reporting & Guides
+              Latest Investigative Reporting & Vlogs
             </h3>
           </div>
           <Link
             to="/articles"
             className="text-xs font-semibold text-amber-700 hover:underline flex items-center gap-1"
           >
-            <span>Browse All 25 Articles</span>
+            <span>Browse All 25 Dispatches</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
@@ -130,7 +151,7 @@ export function HomePage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Main Articles Stream (8 cols) */}
           <div className="lg:col-span-8 space-y-6">
-            {/* First Large Highlight Card */}
+            {/* Lead Horizontal Spotlight Card */}
             {latestArticles[0] && (
               <ArticleCard article={latestArticles[0]} layout="horizontal" />
             )}
@@ -138,8 +159,8 @@ export function HomePage() {
             {/* In-Feed Advertisement Placement */}
             <FeedAd />
 
-            {/* Supporting Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
+            {/* Supporting Grid: 2 columns on mobile, 2 columns on tablet/desktop */}
+            <div className="grid grid-cols-2 gap-3 sm:gap-6 pt-2">
               {latestArticles.slice(1, 7).map((art) => (
                 <ArticleCard key={art.id} article={art} layout="vertical" />
               ))}
@@ -159,7 +180,7 @@ export function HomePage() {
               <div className="divide-y divide-stone-100">
                 {popularArticles.map((art, idx) => (
                   <div key={art.id} className="py-3 first:pt-0 last:pb-0">
-                    <ArticleCard article={art} layout="numbered" rankNumber={idx + 1} />
+                    <ArticleCard article={art} layout="compact" />
                   </div>
                 ))}
               </div>

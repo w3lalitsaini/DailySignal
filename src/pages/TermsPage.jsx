@@ -6,7 +6,16 @@ export function TermsPage() {
   useEffect(() => {
     updateSEO({
       title: "Terms and Conditions of Use — DailySignal",
-      description: "Terms governing use of DailySignal's digital editorial content, intellectual property, and frontend services."
+      description: "Terms governing use of DailySignal's digital editorial content, intellectual property, and frontend services.",
+      keywords: [
+        "terms of service",
+        "intellectual property terms",
+        "editorial syndication",
+        "content licensing",
+        "code sample usage terms"
+      ],
+      image: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1600&q=80",
+      ogType: "website"
     });
   }, []);
 

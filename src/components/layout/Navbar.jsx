@@ -8,7 +8,12 @@ import {
   Bookmark,
   Menu,
   X,
-  TrendingUp
+  TrendingUp,
+  BookOpen,
+  Shield,
+  Mail,
+  Layers,
+  Flame
 } from "lucide-react";
 
 export function Navbar() {
@@ -166,7 +171,7 @@ export function Navbar() {
                 }`
               }
             >
-              All Stories (15)
+              All Stories
             </NavLink>
             {categories.map((cat) => (
               <NavLink
@@ -225,75 +230,163 @@ export function Navbar() {
         )}
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Redesigned Mobile Drawer Menu with Associated Images & Rich Navigation */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-stone-200 bg-[#fafaf9] px-4 pt-3 pb-6 space-y-4 max-h-[85vh] overflow-y-auto">
-          <form onSubmit={handleSearchSubmit} className="relative flex items-center">
-            <Search className="w-4 h-4 text-stone-400 absolute left-3 pointer-events-none" />
-            <input
-              type="search"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search dispatches..."
-              className="w-full pl-9 pr-4 py-2 text-xs rounded-lg border border-stone-200 bg-white text-stone-900"
-            />
-          </form>
+        <div className="lg:hidden fixed inset-x-0 top-full bg-[#fafaf9] border-b border-stone-200 shadow-2xl max-h-[calc(100vh-3.5rem)] overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
+          <div className="px-4 py-5 space-y-6">
+            {/* 1. Mobile Search Bar */}
+            <form onSubmit={handleSearchSubmit} className="relative flex items-center">
+              <Search className="w-4 h-4 text-stone-400 absolute left-3 pointer-events-none" />
+              <input
+                type="search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search across all 25 stories & vlogs..."
+                className="w-full pl-9 pr-20 py-2.5 text-xs rounded-xl border border-stone-200 bg-white text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-500/30"
+              />
+              <button
+                type="submit"
+                className="absolute right-1.5 px-3 py-1.5 rounded-lg bg-stone-900 text-white text-[11px] font-semibold hover:bg-stone-800 transition"
+              >
+                Search
+              </button>
+            </form>
 
-          <div>
-            <h4 className="text-[10px] uppercase font-semibold text-stone-400 tracking-wider mb-2">
-              Editorial Categories
-            </h4>
-            <div className="grid grid-cols-2 gap-2">
-              <Link
-                to="/articles"
-                className="px-3 py-2 text-xs rounded-md bg-stone-100 text-stone-900 font-medium"
-              >
-                All Stories (15)
-              </Link>
-              <Link
-                to="/trending"
-                className="px-3 py-2 text-xs rounded-md bg-stone-100 text-stone-900 font-medium flex items-center gap-1.5"
-              >
-                <TrendingUp className="w-3.5 h-3.5 text-amber-600" />
-                Trending
-              </Link>
-              {categories.map((cat) => (
+            {/* 2. Primary Destinations with Visual Thumbnails */}
+            <div>
+              <div className="flex items-center justify-between mb-2.5">
+                <span className="text-[10px] uppercase font-bold tracking-wider text-stone-400 font-mono">
+                  Primary Feeds
+                </span>
+                <span className="text-[10px] text-amber-700 font-semibold font-mono">25 STORIES</span>
+              </div>
+              <div className="grid grid-cols-2 gap-2.5">
                 <Link
-                  key={cat.id}
-                  to={`/category/${cat.slug}`}
-                  className="px-3 py-2 text-xs rounded-md border border-stone-200 hover:bg-stone-100 text-stone-700"
+                  to="/articles"
+                  className="group relative rounded-xl border border-stone-200 overflow-hidden bg-stone-900 h-20 flex flex-col justify-end p-2.5"
                 >
-                  {cat.name}
+                  <img
+                    src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=400&q=80"
+                    alt="All Stories"
+                    className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/60 to-transparent" />
+                  <div className="relative z-10">
+                    <span className="text-[9px] uppercase font-bold text-amber-400 tracking-wider font-mono">
+                      Full Archive
+                    </span>
+                    <h5 className="text-xs font-bold text-white group-hover:text-amber-200">
+                      All Stories (25) &rarr;
+                    </h5>
+                  </div>
                 </Link>
-              ))}
-            </div>
-          </div>
 
-          <div className="pt-3 border-t border-stone-200 space-y-2">
-            <Link
-              to="/about"
-              className="block text-xs font-medium text-stone-700 hover:text-stone-900"
-            >
-              About DailySignal & Standards
-            </Link>
-            <Link
-              to="/contact"
-              className="block text-xs font-medium text-stone-700 hover:text-stone-900"
-            >
-              Contact & Pitch Story
-            </Link>
-            <Link
-              to="/bookmarks"
-              className="block text-xs font-medium text-stone-700 hover:text-stone-900"
-            >
-              Saved Bookmarks ({bookmarkCount})
-            </Link>
-            <Link
-              to="/cookies"
-              className="block text-xs font-medium text-stone-700 hover:text-stone-900"
-            >
-              Cookie & Tracking Preferences
-            </Link>
+                <Link
+                  to="/trending"
+                  className="group relative rounded-xl border border-stone-200 overflow-hidden bg-stone-900 h-20 flex flex-col justify-end p-2.5"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400&q=80"
+                    alt="Trending"
+                    className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/60 to-transparent" />
+                  <div className="relative z-10">
+                    <span className="text-[9px] uppercase font-bold text-orange-400 tracking-wider font-mono flex items-center gap-1">
+                      <Flame className="w-2.5 h-2.5" /> High Velocity
+                    </span>
+                    <h5 className="text-xs font-bold text-white group-hover:text-orange-200">
+                      Trending Board &rarr;
+                    </h5>
+                  </div>
+                </Link>
+              </div>
+            </div>
+
+            {/* 3. Editorial Verticals with Image Cards (2-per-row) */}
+            <div>
+              <div className="flex items-center justify-between mb-2.5">
+                <span className="text-[10px] uppercase font-bold tracking-wider text-stone-400 font-mono">
+                  Editorial Fields (6 Desks)
+                </span>
+                <span className="text-[10px] text-stone-400 font-mono">TAP TO EXPLORE</span>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                {categories.map((cat) => (
+                  <Link
+                    key={cat.id}
+                    to={`/category/${cat.slug}`}
+                    className="group relative rounded-xl border border-stone-200 overflow-hidden bg-stone-900 h-16 flex flex-col justify-end p-2"
+                  >
+                    <img
+                      src={cat.image}
+                      alt={cat.name}
+                      className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/60 to-transparent" />
+                    <div className="relative z-10 flex items-center justify-between">
+                      <span className="text-xs font-bold text-white group-hover:text-amber-300 transition-colors">
+                        {cat.name}
+                      </span>
+                      <span className="text-[9px] font-mono text-stone-300">
+                        {cat.articleCount}
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* 4. Quick Actions (Bookmarks & Reading Queue) */}
+            <div className="p-3 rounded-xl border border-stone-200 bg-white flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <div className="p-2 rounded-lg bg-amber-50 text-amber-700">
+                  <Bookmark className="w-4 h-4 fill-current" />
+                </div>
+                <div>
+                  <h6 className="text-xs font-bold text-stone-900">Personal Reading Queue</h6>
+                  <p className="text-[10px] text-stone-500">Offline cached bookmarks on this device</p>
+                </div>
+              </div>
+              <Link
+                to="/bookmarks"
+                className="px-3 py-1.5 rounded-lg bg-stone-900 text-white text-xs font-semibold hover:bg-stone-800 transition"
+              >
+                View ({bookmarkCount})
+              </Link>
+            </div>
+
+            {/* 5. Publication Meta Links */}
+            <div className="pt-4 border-t border-stone-200 grid grid-cols-2 gap-2 text-xs">
+              <Link
+                to="/about"
+                className="flex items-center gap-2 p-2 rounded-lg hover:bg-stone-100 text-stone-700 font-medium transition"
+              >
+                <BookOpen className="w-3.5 h-3.5 text-amber-700" />
+                <span>About Charter</span>
+              </Link>
+              <Link
+                to="/contact"
+                className="flex items-center gap-2 p-2 rounded-lg hover:bg-stone-100 text-stone-700 font-medium transition"
+              >
+                <Mail className="w-3.5 h-3.5 text-amber-700" />
+                <span>Contact Desk</span>
+              </Link>
+              <Link
+                to="/privacy"
+                className="flex items-center gap-2 p-2 rounded-lg hover:bg-stone-100 text-stone-700 font-medium transition"
+              >
+                <Shield className="w-3.5 h-3.5 text-stone-500" />
+                <span>Privacy Policy</span>
+              </Link>
+              <Link
+                to="/cookies"
+                className="flex items-center gap-2 p-2 rounded-lg hover:bg-stone-100 text-stone-700 font-medium transition"
+              >
+                <Layers className="w-3.5 h-3.5 text-stone-500" />
+                <span>Cookies & Tracking</span>
+              </Link>
+            </div>
           </div>
         </div>
       )}

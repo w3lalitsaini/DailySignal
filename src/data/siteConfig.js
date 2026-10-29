@@ -5,6 +5,17 @@ export const siteConfig = {
   url: "https://dailysignal.dev",
   author: "DailySignal Editorial Board",
   locale: "en-US",
+  defaultImage: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1600&q=80",
+  defaultKeywords: [
+    "technology vlogs",
+    "engineering analysis",
+    "software development",
+    "ai agents",
+    "cybersecurity",
+    "tech magazine",
+    "web performance",
+    "digital culture"
+  ],
   announcement: {
     enabled: true,
     badge: "Special Report",
@@ -12,14 +23,54 @@ export const siteConfig = {
     link: "/article/recognizing-online-scams-in-india"
   },
   navItems: [
-    { label: "Home", href: "/" },
-    { label: "All Stories", href: "/articles" },
-    { label: "AI & Tech", href: "/category/ai-tech" },
-    { label: "Development", href: "/category/development" },
-    { label: "Security", href: "/category/security" },
-    { label: "Business", href: "/category/business" },
-    { label: "Productivity", href: "/category/productivity" },
-    { label: "Digital Life", href: "/category/digital-life" },
+    {
+      label: "Home",
+      href: "/",
+      image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=800&q=80",
+      description: "Frontpage editorial features and breaking investigations"
+    },
+    {
+      label: "All Stories",
+      href: "/articles",
+      image: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=800&q=80",
+      description: "Complete archive of 25 engineering deep dives and guides"
+    },
+    {
+      label: "AI & Tech",
+      href: "/category/ai-tech",
+      image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+      description: "Agentic systems, foundation models, and LLM orchestration"
+    },
+    {
+      label: "Development",
+      href: "/category/development",
+      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
+      description: "Frontend architecture, performance, and craftsmanship"
+    },
+    {
+      label: "Security",
+      href: "/category/security",
+      image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80",
+      description: "Investigative cyber defense, scams, and banking security"
+    },
+    {
+      label: "Business",
+      href: "/category/business",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+      description: "Creator monetization, online ventures, and media models"
+    },
+    {
+      label: "Productivity",
+      href: "/category/productivity",
+      image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80",
+      description: "Actionable engineering workflows and cognitive systems"
+    },
+    {
+      label: "Digital Life",
+      href: "/category/digital-life",
+      image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=800&q=80",
+      description: "EV realities, consumer tech shifts, and hardware teardowns"
+    },
   ],
   socials: [
     { label: "Twitter / X", href: "https://twitter.com", icon: "Twitter" },
@@ -61,6 +112,7 @@ export const siteConfig = {
       footer: import.meta.env.VITE_ADSENSE_FOOTER_SLOT || "0000000004",
     }
   },
+  contactFormEndpoint: "https://formspree.io/f/mnnzblkd",
   analytics: {
     gaId: import.meta.env.VITE_GA_MEASUREMENT_ID || ""
   }

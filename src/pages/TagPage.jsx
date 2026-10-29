@@ -13,11 +13,19 @@ export function TagPage() {
 
   useEffect(() => {
     updateSEO({
-      title: `#${decodedTag} Articles — DailySignal`,
-      description: `Browse all articles tagged with #${decodedTag}.`,
+      title: `#${decodedTag} — Technical Investigations & Vlogs`,
+      description: `Browse all articles and technical video guides tagged with #${decodedTag}.`,
+      keywords: [
+        decodedTag,
+        `${decodedTag} tech`,
+        `${decodedTag} vlogs`,
+        "developer tutorials",
+        "engineering articles"
+      ],
+      image: articlesList[0]?.heroImage || "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1600&q=80",
       ogType: "website"
     });
-  }, [decodedTag]);
+  }, [decodedTag, articlesList]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
@@ -59,7 +67,7 @@ export function TagPage() {
       </div>
 
       {articlesList.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
           {articlesList.map((article) => (
             <ArticleCard key={article.id} article={article} layout="vertical" />
           ))}

@@ -1,13 +1,21 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { updateSEO } from "../lib/seo";
-import { ShieldCheck, Lock, Cookie, Eye } from "lucide-react";
+import { Lock, Cookie, Eye } from "lucide-react";
 
 export function PrivacyPage() {
   useEffect(() => {
     updateSEO({
-      title: "Privacy Policy — DailySignal",
+      title: "Privacy Policy & Data Protection Charter — DailySignal",
       description: "Transparency on how DailySignal handles visitor data, local storage, analytics, and cookie consent.",
+      keywords: [
+        "privacy policy",
+        "data protection",
+        "cookie consent",
+        "gdpr compliance",
+        "browser storage privacy"
+      ],
+      image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1600&q=80",
       ogType: "website"
     });
   }, []);

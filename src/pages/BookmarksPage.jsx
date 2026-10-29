@@ -5,15 +5,24 @@ import { useBookmarks } from "../context/BookmarkContext";
 import { ArticleCard } from "../components/articles/ArticleCard";
 import { EmptyState } from "../components/ui/EmptyState";
 import { updateSEO } from "../lib/seo";
-import { Bookmark, Trash2, Clock, BookOpen, ChevronRight } from "lucide-react";
+import { Bookmark, Trash2, Clock, ChevronRight } from "lucide-react";
 
 export function BookmarksPage() {
   const { bookmarks, clearBookmarks } = useBookmarks();
 
   useEffect(() => {
     updateSEO({
-      title: "Your Saved Bookmarks — DailySignal",
-      description: "Manage and read your offline saved technical dispatches and architectural analyses."
+      title: "Your Saved Bookmarks — Personal Reading Queue",
+      description: "Manage and read your offline saved technical dispatches, video vlogs, and architectural analyses.",
+      keywords: [
+        "reading queue",
+        "saved tech bookmarks",
+        "offline articles",
+        "developer reading list",
+        "saved vlogs"
+      ],
+      image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1600&q=80",
+      ogType: "website"
     });
   }, []);
 
@@ -84,9 +93,9 @@ export function BookmarksPage() {
         </div>
       </div>
 
-      {/* Grid or Empty State */}
+      {/* Grid or Empty State: 2 columns on mobile */}
       {bookmarkedArticles.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
           {bookmarkedArticles.map((article) => (
             <ArticleCard key={article.id} article={article} layout="vertical" />
           ))}

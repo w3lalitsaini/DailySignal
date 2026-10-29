@@ -8,8 +8,11 @@ import { categories } from "../data/categories";
 export function NotFoundPage() {
   useEffect(() => {
     updateSEO({
-      title: "404 Page Not Found — DailySignal",
-      description: "The requested article or page could not be located in the DailySignal archives."
+      title: "404 Page Not Found — DailySignal Archives",
+      description: "The requested article, vlog, or page could not be located in the DailySignal archives.",
+      keywords: ["404 error", "page not found", "dailysignal archives"],
+      image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1600&q=80",
+      ogType: "website"
     });
   }, []);
 

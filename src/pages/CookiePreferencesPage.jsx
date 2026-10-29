@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useConsent } from "../context/ConsentContext";
 import { updateSEO } from "../lib/seo";
-import { Cookie, Shield, Check, RotateCcw } from "lucide-react";
+import { Cookie, Check } from "lucide-react";
 
 export function CookiePreferencesPage() {
   const { consent, updateCustomConsent, acceptAll, rejectNonEssential } = useConsent();
@@ -12,8 +12,17 @@ export function CookiePreferencesPage() {
 
   useEffect(() => {
     updateSEO({
-      title: "Cookie & Tracking Preferences — DailySignal",
-      description: "Manage your consent choices for essential storage, Google Analytics 4, and Google AdSense."
+      title: "Cookie & Tracking Preferences — DailySignal Privacy Center",
+      description: "Manage your consent choices for essential storage, Google Analytics 4, and Google AdSense.",
+      keywords: [
+        "cookie preferences",
+        "tracking consent",
+        "privacy settings",
+        "consent management",
+        "browser storage consent"
+      ],
+      image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1600&q=80",
+      ogType: "website"
     });
   }, []);
 

@@ -24,25 +24,31 @@ export function SearchPage() {
   const qParam = searchParams.get("q") || "";
   const [query, setQuery] = useState(qParam);
 
+  const results = useMemo(() => {
+    return searchArticles(query);
+  }, [query]);
+
   useEffect(() => {
     setQuery(qParam);
     if (qParam) {
       updateSEO({
-        title: `Search: "${qParam}" — DailySignal`,
-        description: `Search results for "${qParam}" across DailySignal archives.`
+        title: `Search: "${qParam}" — Technical Dispatches & Vlogs`,
+        description: `Search results for "${qParam}" across DailySignal technical archives and engineering vlogs.`,
+        keywords: [qParam, `search ${qParam}`, "tech search", "engineering dispatches", "developer vlogs"],
+        image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1600&q=80",
+        ogType: "website"
       });
       trackSearch(qParam, results.length);
     } else {
       updateSEO({
-        title: "Search DailySignal Dispatches",
-        description: "Search all 25 articles across technology, engineering, privacy, and economics."
+        title: "Search DailySignal Dispatches & Technical Vlogs",
+        description: "Search all 25 articles and engineering deep dives across technology, engineering, privacy, and economics.",
+        keywords: ["search articles", "find vlogs", "tech query", "software engineering search"],
+        image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1600&q=80",
+        ogType: "website"
       });
     }
-  }, [qParam]);
-
-  const results = useMemo(() => {
-    return searchArticles(query);
-  }, [query]);
+  }, [qParam, results.length]);
 
   const handleQueryChange = (val) => {
     setQuery(val);
@@ -112,9 +118,9 @@ export function SearchPage() {
         </span>
       </div>
 
-      {/* Results Grid */}
+      {/* Results Grid: 2 columns on mobile */}
       {results.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
           {results.map((article) => (
             <ArticleCard key={article.id} article={article} layout="vertical" />
           ))}

@@ -23,6 +23,15 @@ export function AboutPage() {
     updateSEO({
       title: "About DailySignal — Editorial Charter, Newsroom Standards & Independence",
       description: "Learn about DailySignal's mission, newsroom standards, engineering team, and commitment to independent digital journalism.",
+      keywords: [
+        "about dailysignal",
+        "editorial charter",
+        "tech journalism ethics",
+        "engineering newsroom",
+        "independent tech publication",
+        "technology journalists"
+      ],
+      image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80",
       ogType: "website"
     });
   }, []);

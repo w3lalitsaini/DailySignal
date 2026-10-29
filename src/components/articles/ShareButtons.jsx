@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-import { Share2, Check, Copy } from "lucide-react";
+import { Share2, Check } from "lucide-react";
 import { TwitterIcon, LinkedinIcon } from "../ui/SocialIcons";
 import { shareArticle } from "../../lib/sharing";
 
-export function ShareButtons({ title, text, url, className = "" }) {
+export function ShareButtons({ title, text, url, article: _article, onOpenModal, className = "" }) {
   const [copied, setCopied] = useState(false);
 
   const handleShare = async () => {
+    if (onOpenModal) {
+      onOpenModal();
+      return;
+    }
     const res = await shareArticle({ title, text, url });
     if (res.success && res.method === "clipboard") {
       setCopied(true);
@@ -26,7 +30,7 @@ export function ShareButtons({ title, text, url, className = "" }) {
       <button
         onClick={handleShare}
         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-stone-200 bg-white text-stone-700 hover:bg-stone-50 text-xs font-medium transition cursor-pointer shadow-xs"
-        title="Share or copy article link"
+        title="Share or copy article link with thumbnail"
       >
         {copied ? (
           <>

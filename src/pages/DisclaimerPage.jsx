@@ -1,12 +1,20 @@
 import React, { useEffect } from "react";
 import { updateSEO } from "../lib/seo";
-import { AlertTriangle, ShieldAlert } from "lucide-react";
+import { AlertTriangle } from "lucide-react";
 
 export function DisclaimerPage() {
   useEffect(() => {
     updateSEO({
       title: "Editorial & Professional Disclaimer — DailySignal",
-      description: "Important legal disclaimers regarding technology benchmarks, financial reporting, and cybersecurity guidance on DailySignal."
+      description: "Important legal disclaimers regarding technology benchmarks, financial reporting, and cybersecurity guidance on DailySignal.",
+      keywords: [
+        "editorial disclaimer",
+        "legal notice",
+        "technology benchmarks disclaimer",
+        "cybersecurity advisory notice"
+      ],
+      image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1600&q=80",
+      ogType: "website"
     });
   }, []);
 

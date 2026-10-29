@@ -9,6 +9,7 @@ import { trackArticleView } from "../lib/analytics";
 import { CategoryBadge, TagBadge } from "../components/ui/Badge";
 import { BookmarkButton } from "../components/articles/BookmarkButton";
 import { ShareButtons } from "../components/articles/ShareButtons";
+import { ShareModal } from "../components/articles/ShareModal";
 import { TableOfContents } from "../components/articles/TableOfContents";
 import { ReadingProgress } from "../components/articles/ReadingProgress";
 import { RelatedArticles } from "../components/articles/RelatedArticles";
@@ -20,6 +21,7 @@ import {
 } from "../components/ads/InArticleAd";
 import { NewsletterForm } from "../components/forms/NewsletterForm";
 import { OptimizedImage } from "../components/ui/OptimizedImage";
+import { useReaderPreferences } from "../context/ReaderPreferencesContext";
 import {
   Calendar,
   Clock,
@@ -29,8 +31,9 @@ import {
   HelpCircle,
   AlertCircle,
   Info,
-  CheckCircle,
-  Type
+  Sliders,
+  Eye,
+  EyeOff
 } from "lucide-react";
 
 export function ArticleDetailPage() {
@@ -38,7 +41,15 @@ export function ArticleDetailPage() {
   const navigate = useNavigate();
   const article = getArticleBySlug(slug);
   const adjacent = getAdjacentArticles(slug);
-  const [fontSize, setFontSize] = useState("normal"); // "normal" | "large" | "xlarge"
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+
+  const {
+    getProseClasses,
+    getContentWidthClass,
+    focusMode,
+    toggleFocusMode,
+    setIsReaderModalOpen
+  } = useReaderPreferences();
 
   useEffect(() => {
     if (!article) {
@@ -112,6 +123,7 @@ export function ArticleDetailPage() {
     updateSEO({
       title: article.title,
       description: article.excerpt,
+      keywords: article.tags,
       ogType: "article",
       image: article.heroImage,
       publishedAt: article.publishedAt,
@@ -136,13 +148,6 @@ export function ArticleDetailPage() {
   });
 
   const sections = article.content?.sections || [];
-
-  // Font size multiplier classes for optimal reading clarity
-  const fontSizeClasses = {
-    normal: "text-[18px] sm:text-[19px] leading-[1.85]",
-    large: "text-[20px] sm:text-[21px] leading-[1.9]",
-    xlarge: "text-[22px] sm:text-[23px] leading-[1.95]"
-  }[fontSize];
 
   return (
     <>
@@ -228,47 +233,69 @@ export function ArticleDetailPage() {
               </div>
             )}
 
-            <div className="flex items-center gap-2.5">
-              {/* Font Size Adjuster for enhanced reader comfort */}
-              <div
-                className="flex items-center gap-1 px-2.5 py-1 rounded-full border border-stone-200 bg-stone-50 text-stone-600 text-xs shadow-xs"
-                title="Adjust article reading font size"
+            <div className="flex flex-wrap items-center gap-2">
+              {/* Reader Customization / Appearance Controls */}
+              <button
+                onClick={() => setIsReaderModalOpen(true)}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-stone-200 bg-white hover:bg-stone-50 text-stone-700 text-xs font-medium transition shadow-xs cursor-pointer"
+                title="Customize typography, font, and spacing"
               >
-                <Type className="w-3.5 h-3.5 text-stone-500 mr-0.5" />
-                <button
-                  onClick={() => setFontSize("normal")}
-                  className={`px-1.5 py-0.5 rounded text-xs font-semibold transition ${
-                    fontSize === "normal" ? "bg-amber-600 text-white" : "hover:text-stone-900"
-                  }`}
-                >
-                  A
-                </button>
-                <button
-                  onClick={() => setFontSize("large")}
-                  className={`px-1.5 py-0.5 rounded text-xs font-semibold transition ${
-                    fontSize === "large" ? "bg-amber-600 text-white" : "hover:text-stone-900"
-                  }`}
-                >
-                  A+
-                </button>
-                <button
-                  onClick={() => setFontSize("xlarge")}
-                  className={`px-1.5 py-0.5 rounded text-xs font-semibold transition ${
-                    fontSize === "xlarge" ? "bg-amber-600 text-white" : "hover:text-stone-900"
-                  }`}
-                >
-                  A++
-                </button>
-              </div>
+                <Sliders className="w-3.5 h-3.5 text-amber-700" />
+                <span className="hidden sm:inline">Appearance</span>
+              </button>
+
+              {/* Distraction-Free Focus Mode Toggle */}
+              <button
+                onClick={toggleFocusMode}
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-medium transition shadow-xs cursor-pointer ${
+                  focusMode
+                    ? "bg-amber-600 text-white border-amber-600"
+                    : "bg-white hover:bg-stone-50 text-stone-700 border-stone-200"
+                }`}
+                title={focusMode ? "Exit Focus Mode" : "Distraction-Free Focus Mode"}
+              >
+                {focusMode ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5 text-stone-600" />}
+                <span className="hidden sm:inline">{focusMode ? "Focus On" : "Focus"}</span>
+              </button>
 
               <BookmarkButton slug={article.slug} title={article.title} size="md" showLabel />
-              <ShareButtons title={article.title} text={article.excerpt} />
+              <ShareButtons
+                title={article.title}
+                text={article.excerpt}
+                article={article}
+                onOpenModal={() => setIsShareModalOpen(true)}
+              />
             </div>
           </div>
         </header>
 
-        {/* Ad Slot: Top Article Leaderboard */}
-        <TopArticleAd />
+        {/* Floating Focus Mode Banner when active */}
+        {focusMode && (
+          <div className="max-w-4xl mx-auto mb-6 p-3 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-between text-xs text-amber-900 shadow-xs animate-in fade-in duration-200">
+            <div className="flex items-center gap-2">
+              <Eye className="w-4 h-4 text-amber-700" />
+              <span className="font-semibold">Distraction-Free Focus Mode Active</span>
+              <span className="hidden sm:inline text-amber-800/80">• Ads & sidebars suppressed</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setIsReaderModalOpen(true)}
+                className="px-2.5 py-1 rounded-md bg-amber-100 hover:bg-amber-200 text-amber-900 font-medium transition cursor-pointer"
+              >
+                Typography
+              </button>
+              <button
+                onClick={toggleFocusMode}
+                className="px-2.5 py-1 rounded-md bg-white border border-amber-300 hover:bg-amber-50 text-stone-800 font-medium transition cursor-pointer"
+              >
+                Exit Focus
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Ad Slot: Top Article Leaderboard (hidden in focus mode) */}
+        {!focusMode && <TopArticleAd />}
 
         {/* Hero Image */}
         <figure className="max-w-5xl mx-auto mb-10">
@@ -289,23 +316,35 @@ export function ArticleDetailPage() {
         </figure>
 
         {/* Main Content & Desktop Sidebar Layout */}
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          {/* Main Article Body (8 cols) - Elevated in crisp white reading canvas */}
-          <div className="lg:col-span-8 bg-white rounded-2xl border border-stone-200/90 p-6 sm:p-10 shadow-xs">
+        <div
+          className={`mx-auto ${
+            focusMode
+              ? `${getContentWidthClass()}`
+              : "max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-10 items-start"
+          }`}
+        >
+          {/* Main Article Body */}
+          <div
+            className={`${
+              focusMode ? "w-full" : "lg:col-span-8"
+            } bg-white rounded-2xl border border-stone-200/90 p-6 sm:p-10 shadow-xs`}
+          >
             {/* Mobile Table of Contents */}
             <div className="lg:hidden mb-8">
               <TableOfContents sections={sections} />
             </div>
 
-            {/* Lead paragraph - Extra high contrast for effortless reading */}
+            {/* Lead paragraph */}
             {article.content?.lead && (
-              <p className="font-reading text-xl sm:text-2xl text-stone-900 leading-relaxed font-normal mb-8 pb-6 border-b border-stone-200/70 first-letter:text-6xl first-letter:font-bold first-letter:float-left first-letter:mr-3.5 first-letter:leading-none first-letter:font-serif first-letter:text-amber-700">
+              <p
+                className={`text-xl sm:text-2xl text-stone-900 leading-relaxed font-normal mb-8 pb-6 border-b border-stone-200/70 first-letter:text-6xl first-letter:font-bold first-letter:float-left first-letter:mr-3.5 first-letter:leading-none first-letter:text-amber-700 ${getProseClasses()}`}
+              >
                 {article.content.lead}
               </p>
             )}
 
-            {/* Render Article Sections with Lora reading typography */}
-            <div className={`space-y-8 font-reading text-[#1f2937] ${fontSizeClasses}`}>
+            {/* Render Article Sections */}
+            <div className={`space-y-8 text-[#1f2937] ${getProseClasses()}`}>
               {sections.map((sec, index) => (
                 <section key={sec.id} id={sec.id} className="scroll-mt-20 space-y-4">
                   {sec.level === 2 ? (
@@ -392,17 +431,17 @@ export function ArticleDetailPage() {
                     </div>
                   )}
 
-                  {/* Ad Slot 1: Mid-Article Ad midway through article */}
-                  {index === 1 && <InArticleAd label="Mid-Article Sponsor Bulletin" />}
+                  {/* Ad Slot 1: Mid-Article Ad midway through article (hidden in focus mode) */}
+                  {!focusMode && index === 1 && <InArticleAd label="Mid-Article Sponsor Bulletin" />}
 
-                  {/* Ad Slot 2: Second in-article ad slot deeper in content */}
-                  {index === 3 && <InArticleAd label="Further Insights • Sponsored" />}
+                  {/* Ad Slot 2: Second in-article ad slot deeper in content (hidden in focus mode) */}
+                  {!focusMode && index === 3 && <InArticleAd label="Further Insights • Sponsored" />}
                 </section>
               ))}
             </div>
 
-            {/* Ad Slot 3: Post-Article Ad Banner right before conclusion */}
-            <PostArticleAd />
+            {/* Ad Slot 3: Post-Article Ad Banner right before conclusion (hidden in focus mode) */}
+            {!focusMode && <PostArticleAd />}
 
             {/* Tags & Action Footer */}
             <div className="mt-10 pt-6 border-t border-stone-200 space-y-4">
@@ -416,7 +455,12 @@ export function ArticleDetailPage() {
               </div>
 
               <div className="flex items-center justify-between pt-4">
-                <ShareButtons title={article.title} text={article.excerpt} />
+                <ShareButtons
+                  title={article.title}
+                  text={article.excerpt}
+                  article={article}
+                  onOpenModal={() => setIsShareModalOpen(true)}
+                />
                 <BookmarkButton slug={article.slug} title={article.title} size="md" showLabel />
               </div>
             </div>
@@ -484,32 +528,41 @@ export function ArticleDetailPage() {
             </div>
           </div>
 
-          {/* Desktop Sticky Sidebar (4 cols) with Table of Contents & Ads */}
-          <aside className="hidden lg:block lg:col-span-4 sticky top-20 space-y-6">
-            {/* Table of Contents */}
-            <TableOfContents sections={sections} />
+          {/* Desktop Sticky Sidebar (4 cols) with Table of Contents & Ads (hidden in focus mode) */}
+          {!focusMode && (
+            <aside className="hidden lg:block lg:col-span-4 sticky top-20 space-y-6">
+              {/* Table of Contents */}
+              <TableOfContents sections={sections} />
 
-            {/* Ad Slot 4: Sticky Sidebar Sponsor Unit */}
-            <StickySidebarAd />
+              {/* Ad Slot 4: Sticky Sidebar Sponsor Unit */}
+              <StickySidebarAd />
 
-            {/* Newsletter invite */}
-            <div className="rounded-xl border border-stone-200 bg-white p-5 shadow-xs">
-              <span className="text-[10px] uppercase font-bold tracking-wider text-amber-700 font-sans">
-                Newsroom Dispatch
-              </span>
-              <h4 className="font-serif text-base font-bold text-stone-900 mt-1 mb-2">
-                Enjoyed this deep dive?
-              </h4>
-              <p className="text-xs text-stone-600 leading-relaxed mb-4 font-sans">
-                Receive our weekly long-form research into software systems and engineering integrity.
-              </p>
-              <NewsletterForm variant="compact" />
-            </div>
-          </aside>
+              {/* Newsletter invite */}
+              <div className="rounded-xl border border-stone-200 bg-white p-5 shadow-xs">
+                <span className="text-[10px] uppercase font-bold tracking-wider text-amber-700 font-sans">
+                  Newsroom Dispatch
+                </span>
+                <h4 className="font-serif text-base font-bold text-stone-900 mt-1 mb-2">
+                  Enjoyed this deep dive?
+                </h4>
+                <p className="text-xs text-stone-600 leading-relaxed mb-4 font-sans">
+                  Receive our weekly long-form research into software systems and engineering integrity.
+                </p>
+                <NewsletterForm variant="compact" />
+              </div>
+            </aside>
+          )}
         </div>
 
-        {/* Related Articles Section */}
-        <RelatedArticles currentSlug={article.slug} />
+        {/* Related Articles Section (hidden in focus mode) */}
+        {!focusMode && <RelatedArticles currentSlug={article.slug} />}
+
+        {/* Share Modal with Rich Thumbnail & Preview */}
+        <ShareModal
+          isOpen={isShareModalOpen}
+          onClose={() => setIsShareModalOpen(false)}
+          article={article}
+        />
       </article>
     </>
   );

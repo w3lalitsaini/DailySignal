@@ -6,9 +6,7 @@ import { NewsletterForm } from "../forms/NewsletterForm";
 import { TwitterIcon, GithubIcon, LinkedinIcon } from "../ui/SocialIcons";
 import {
   Rss,
-  ShieldCheck,
-  Code2,
-  Heart
+  ShieldCheck
 } from "lucide-react";
 
 export function Footer() {

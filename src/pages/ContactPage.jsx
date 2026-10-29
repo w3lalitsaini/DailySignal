@@ -1,13 +1,22 @@
 import React, { useEffect } from "react";
 import { ContactForm } from "../components/forms/ContactForm";
 import { updateSEO } from "../lib/seo";
-import { Mail, MapPin, Send, HelpCircle, Newspaper, Clock, ShieldCheck, MessageSquare } from "lucide-react";
+import { Mail, Newspaper, Clock } from "lucide-react";
 
 export function ContactPage() {
   useEffect(() => {
     updateSEO({
-      title: "Contact Newsroom & Editorial Tips — DailySignal",
+      title: "Contact Newsroom & Editorial Tips — Pitch Investigations & Stories",
       description: "Get in touch with the DailySignal editorial newsroom, pitch a technical investigation, or report an errata.",
+      keywords: [
+        "contact newsroom",
+        "pitch tech story",
+        "submit investigation",
+        "editorial tips",
+        "security whistleblowing",
+        "press inquiry"
+      ],
+      image: "https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&w=1600&q=80",
       ogType: "website"
     });
   }, []);
